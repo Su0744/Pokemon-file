@@ -6,17 +6,17 @@ using UnityEngine.UIElements;
 public class Move : MonoBehaviour
 {
     public static Move instace;
-    public Timer timer = new Timer();
+    public Timer timer = new Timer(); //Timer 스크립트 가져오는 인스턴스
 
     [SerializeField] 
     float movespeed = 1; // 캐릭터 스피드
     Animator anima;
     Rigidbody2D rg;
-    const float t_time = 0.3f;
+    const float t_time = 0.3f;          // 변하지 않는 값 (텔레포트 시간값을 지정)
 
     float x, y;
 
-    private void Awake() // move클래스 가져오기 작업
+    private void Awake()                // move클래스 가져오기 작업(awake = 가장먼저 시작하는 메서드을 뜻함)
     {
         instace = this;   
     }
@@ -29,14 +29,14 @@ public class Move : MonoBehaviour
 
     void Update()
     {
-        // 가로 세로의 즉각적인 움직임 부여
-        if (timer.TimerActive())
+        //가로 세로의 즉각적인 움직임 부여
+        if (timer.TimerActive())        // 타미어가 활성화 되어있을때의 행동
         {
-            transform.position += Vector3.zero;
-            anima.SetBool("move", false);
-            anima.SetFloat("x", x);
+            rg.velocity = Vector3.zero;                 //현재위치에 0을 더함
+            anima.SetBool("move", false);               // animator에 "move"을 false로 지정
+            anima.SetFloat("x", x);                     // x,y는 가만히 있을때의 애니메이션 가져오는것
             anima.SetFloat("y", y);
-            return;
+            return;                                     // 종료
         }
 
         float movex = Input.GetAxisRaw("Horizontal"); // 가로
@@ -83,7 +83,7 @@ public class Move : MonoBehaviour
  
     public void Teleport(Exit exit)
     {
-        timer.SetTimer(t_time);
+        timer.SetTimer(t_time);                        // 기다리는 시간값을 지정하는 코드(t_time = 0.3)
         transform.position = exit.spawnpoint.position; // 즉 현재위치를 나갈위치쪽으로 변경하는 코드
     }
 }
