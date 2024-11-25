@@ -20,7 +20,7 @@ public class Dialogue : MonoBehaviour, Interactable      // MonoBehaviour과 inte
         dialogue = File.ReadAllLines(AssetDatabase.GetAssetPath(textFile)).ToList();       //dialogue에 textFile안에 있는 값을 list로 변환시켜서 주는 코드
     }
 
-    public void Interact()
+    public void Interact()  // 무조건 지켜야하는 약속1
     {
 
     }

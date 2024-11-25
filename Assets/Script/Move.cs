@@ -25,6 +25,7 @@ public class Move : MonoBehaviour
     {
         anima = GetComponent<Animator>();
         rg = GetComponent<Rigidbody2D>();
+        
     }
 
     void Update()
@@ -86,5 +87,10 @@ public class Move : MonoBehaviour
         UIManger.instance.Fade("FadeOut");             // Teleport할때 FadeOut을 가져와서 재생하는 코드
         timer.SetTimer(t_time);                        // 기다리는 시간값을 지정하는 코드(t_time = 0.3)
         transform.position = exit.spawnpoint.position; // 즉 현재위치를 나갈위치쪽으로 변경하는 코드
+    }
+
+    void FindObject()
+    {
+
     }
 }
